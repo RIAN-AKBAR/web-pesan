@@ -299,17 +299,38 @@
             opacity: 0.8;
             margin-top: 0.2rem;
         }
-        
-        /* Message Signature */
-        .message-signature {
-            text-align: right;
-            font-style: italic;
-            margin-top: 0.8rem;
-            color: #FF5D8F;
-            font-weight: 50px;
-            font-family: 'Dancing Script', cursive;
-            font-size: 1rem;
-        }
+   /* Style baru untuk message-signature dengan warna pink */
+.message-signature {
+    text-align: right;
+    font-style: italic;
+    margin-top: 1rem;
+    color: #FF5D8F; /* Warna pink */
+    font-weight: 700; /* Lebih tebal dari sebelumnya */
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem; /* Lebih besar dari sebelumnya (1.3rem) */
+    position: relative;
+    display: inline-block;
+    padding: 0.2rem 0.8rem; /* Padding lebih lebar */
+}
+
+.message-signature::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 45%; /* Stabilo sedikit lebih tinggi */
+    background-color: rgba(255, 93, 143, 0.3); /* Warna stabilo pink dengan transparansi */
+    z-index: -1;
+    transform: rotate(-1deg);
+    border-radius: 3px;
+}
+
+/* Untuk signature yang ingin lebih tebal */
+.message-signature strong {
+    font-weight: 800; /* Lebih tebal */
+    font-size: 1.6rem; /* Lebih besar */
+}
         
         /* Quotes Section */
         .quote-section {
