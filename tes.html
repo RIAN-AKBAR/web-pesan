@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenangan PKL | Untuk Tika dan Siti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap');
+        
+        :root {
+            --primary: #FF85A2;
+            --secondary: #FFD166;
+            --dark: #4A4A4A;
+            --light: #FFF9F9;
+            --gray: #8B8B8B;
+            --accent: #A5FFD6;
+            --ribbon: #FF9EB7;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Background Ribbon */
+        .ribbon-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                linear-gradient(45deg, var(--ribbon) 25%, transparent 25%) -50px 0,
+                linear-gradient(-45deg, var(--ribbon) 25%, transparent 25%) -50px 0,
+                linear-gradient(45deg, transparent 75%, var(--ribbon) 75%),
+                linear-gradient(-45deg, transparent 75%, var(--ribbon) 75%);
+            background-size: 100px 100px;
+            opacity: 0.15;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 0 30px rgba(0,0,0,0.05);
+            border-radius: 15px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        /* Header */
+        header {
+            text-align: center;
+            padding: 4rem 0 3rem;
+            position: relative;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #FF5D8F, #FF85A2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: fadeInDown 1s ease;
+            font-weight: 700;
+            line-height: 1.3;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, #FF5D8F, #FF85A2);
+            border-radius: 3px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease 0.3s both;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .divider {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #FF5D8F, #FF85A2);
+            margin: 1.5rem auto;
+            border-radius: 4px;
+            animation: scaleIn 1s ease 0.6s both;
+        }
+        
+        /* Main Content */
+        section {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-size: 1.8rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .section-title span {
+            color: #FF5D8F;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #FF5D8F, #FF85A2);
+            border-radius: 3px;
+            animation: scaleIn 0.8s ease 0.4s forwards;
+        }
+        
+        /* Memory Cards */
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .memory-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-top: 3px solid #FF85A2;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .memory-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #FF5D8F, #FF85A2);
+        }
+        
+        .memory-card:nth-child(1) { animation-delay: 0.2s; }
+        .memory-card:nth-child(2) { animation-delay: 0.4s; }
+        .memory-card:nth-child(3) { animation-delay: 0.6s; }
+        
+        .memory-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .memory-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #FF5D8F;
+        }
+        
+        .memory-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+        
+        .memory-desc {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Photo Gallery - Fixed to prevent image cropping */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .photo-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 250px; /* Fixed height */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f5f5f5;
+        }
+        
+        .photo-item img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* Changed from cover to contain */
+            transition: transform 0.5s ease;
+        }
+        
+        .photo-item:nth-child(1) { animation-delay: 0.2s; }
+        .photo-item:nth-child(2) { animation-delay: 0.4s; }
+        .photo-item:nth-child(3) { animation-delay: 0.6s; }
+        .photo-item:nth-child(4) { animation-delay: 0.8s; }
+        
+        .photo-item:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .photo-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-item:hover .photo-caption {
+            transform: translateY(0);
+        }
+        
+        .photo-date {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-top: 0.3rem;
+        }
+        
+        /* Message Signature */
+        .message-signature {
+            text-align: right;
+            font-style: italic;
+            margin-top: 1rem;
+            color: #FF5D8F;
+            font-weight: 500;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.1rem;
+        }
+        
+        /* Quotes Section */
+        .quote-section {
+            background: linear-gradient(135deg, #FF5D8F 0%, #FF85A2 100%);
+            color: white;
+            padding: 3.5rem 1.5rem;
+            margin: 3rem 0;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quote-section::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .quote-section::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            left: -60px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .quote-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .quote-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .quote-text::before,
+        .quote-text::after {
+            content: '"';
+            font-size: 2.5rem;
+            color: rgba(255, 255, 255, 0.3);
+            position: absolute;
+        }
+        
+        .quote-text::before {
+            top: -15px;
+            left: -20px;
+        }
+        
+        .quote-text::after {
+            bottom: -30px;
+            right: -20px;
+        }
+        
+        .quote-author {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+        
+        /* Thank You Section */
+        .thank-you-section {
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
+        .thank-you-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            line-height: 1.3;
+        }
+        
+        .thank-you-title span {
+            color: #FF5D8F;
+        }
+        
+        .thank-you-text {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: var(--gray);
+            font-size: 1rem;
+        }
+        
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #FF5D8F;
+            margin-top: 1.5rem;
+            display: inline-block;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+        }
+        
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 50px;
+            padding: 10px 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+            transform: translateY(100px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 1s forwards;
+            border: 2px solid #FF85A2;
+        }
+        
+        .music-control {
+            background: #FF5D8F;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .music-control:hover {
+            background: #FF85A2;
+            transform: scale(1.1);
+        }
+        
+        .music-info {
+            font-size: 0.8rem;
+            max-width: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            transition: max-width 0.5s ease, margin-left 0.5s ease;
+            color: #FF5D8F;
+        }
+        
+        .music-player:hover .music-info {
+            max-width: 200px;
+            margin-left: 5px;
+        }
+        
+        /* Autoplay Notice */
+        .autoplay-notice {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: rgba(255, 93, 143, 0.9);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            max-width: 250px;
+            z-index: 100;
+            display: none;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #FF5D8F 0%, #FF85A2 100%);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 3rem;
+            position: relative;
+            text-align: center;
+        }
+        
+        .footer-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .footer-text {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2rem 0;
+        }
+        
+        .social-icon {
+            color: white;
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .social-icon:hover {
+            background: white;
+            color: #FF5D8F;
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+        
+        /* Floating Animation */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .footer-title {
+                font-size: 1.8rem;
+            }
+            
+            .footer-text {
+                font-size: 1rem;
+            }
+            
+            .social-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+            
+            .photo-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .photo-item {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            footer {
+                padding: 2rem 0;
+            }
+            
+            .footer-title {
+                font-size: 1.5rem;
+            }
+            
+            .social-links {
+                gap: 15px;
+            }
+            
+            .copyright {
+                font-size: 0.8rem;
+            }
+            
+            .photo-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .photo-item {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Ribbon -->
+    <div class="ribbon-bg"></div>
+    
+    <!-- Music Player -->
+    <div class="music-player">
+        <div class="music-control" id="playPauseBtn">
+            <i class="fas fa-play"></i>
+        </div>
+        <div class="music-info">
+        Memutar: sebuah kisah klasik - Sheila
+        </div>
+        <audio id="bgMusic" loop>
+            <source src="sound.mp3" type="audio/mpeg">
+            Browser Anda tidak mendukung elemen audio.
+        </audio>
+    </div>
+    
+    <!-- Autoplay Notice -->
+    <div class="autoplay-notice" id="autoplayNotice">
+        Musik otomatis dimainkan. Klik tombol di bawah untuk mengontrol.
+    </div>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <h1>Pesan Perpisahan PKL</h1>
+                <p class="subtitle"><strong> untuk: Tika dan Siti</strong></p>
+                <p class="subtitle">Sebuah perjalanan singkat yang penuh makna, bersama kalian yang terbaik</p>
+                <div class="divider"></div>
+                <div class="floating" style="font-size: 3.5rem; color: #FF5D8F;">
+                    <i class="fas fa-heart"></i>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main>
+            <!-- Memory Section -->
+            <section id="memories">
+                <h2 class="section-title">Momen <span>Tak Terlupakan</span></h2>
+                
+                <div class="memory-grid">
+                    <div class="memory-card">
+                        <div class="memory-icon">
+                            <i class="fas fa-laugh-beam"></i>
+                        </div>
+                        <h3 class="memory-title">Tawa Bersama</h3>
+                        <p class="memory-desc">Dari yang awalnya canggung sampai bisa tertawa lepas bersama. Setiap candaan kecil menjadi kenangan yang besar.</p>
+                    </div>
+                    
+                    <div class="memory-card">
+                        <div class="memory-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3 class="memory-title">Gotong Royong</h3>
+                        <p class="memory-desc">Saling membantu saat ada yang kesulitan, berbagi ilmu, dan bersama-sama menyelesaikan tantangan.</p>
+                    </div>
+                    
+                    <div class="memory-card">
+                        <div class="memory-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3 class="memory-title">Makan Siang</h3>
+                        <p class="memory-desc">Momen berbagi makanan dan cerita di sela-sela istirahat, membuat kita semakin dekat.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Photo Gallery Section -->
+            <section id="gallery">
+                <h2 class="section-title">Galeri <span>Kenangan</span></h2>
+                
+                <div class="photo-gallery">
+                    <div class="photo-item">
+                        <img src="foto1.jpg" alt="Kenangan PKL 1">
+                    </div>
+                    
+                    <div class="photo-item">
+                        <img src="foto2.jpg" alt="Kenangan PKL 2">
+                    </div>
+                    
+                    <div class="photo-item">
+                        <img src="foto3.jpg" alt="Kenangan PKL 3">
+                    </div>
+                    
+                    <div class="photo-item">
+                        <img src="foto4.jpg" alt="Kenangan PKL 4">
+                    </div>
+
+                    <div class="photo-item">
+                        <img src="foto5.jpg" alt="Kenangan PKL 5">
+                    </div>
+
+                    <div class="photo-item">
+                        <img src="foto6.jpg" alt="Kenangan PKL 6">
+                    </div>
+
+                    <div class="photo-item">
+                        <img src="foto7.jpg" alt="Kenangan PKL 7">
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Quote Section -->
+            <section class="quote-section">
+                <div class="quote-content">
+                    <p class="quote-text">Teman sejati adalah mereka yang bisa membuatmu tertawa di saat yang tepat, membantumu ketika terjatuh, dan selalu ada meski hanya dalam diam</p>
+                    <p class="quote-author">- Kita Semua -</p>
+                </div>
+            </section>
+            
+            <!-- Messages Section -->
+            <section id="messages">
+                <h2 class="section-title">Kesan <span>dan Pesan</span></h2>
+                
+                <div class="memory-grid">
+                    <div class="memory-card">
+                        <div class="memory-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <h3 class="memory-title">Pesan</h3>
+                        <p class="memory-desc"><strong> tika: </strong> makasih ya partner main game horror, lu masih punya utang nyelesain game interliminality sama gua jadi klo mau mabar call me yh😏
+
+<br> <strong>Siti:</strong> makasih yaa sit lu udh ngajarin gua nginput neraca, ngajarin rumus rumus yg lain jga, jdi tmn ketawa gua walaupun gatau ngetawain apaan 
+
+<br> <strong> buat kalian: </strong> makasih ya kalian, meskipun kita temenan cmn sebentar gua ga nyangka sih bisa se frekuensi ini, kalian jga udh ngajarin gua hal hal yg harus dikerjain, ngejawab pertanyaan gua yg bawel pas awal" gua masuk pkoknya makasih ya buat semua.. belajar yg bener jgn main roblox bae😏</p>
+                        <p class="message-signature">- icha -</p>
+                    </div>
+                    
+                    <div class="memory-card">
+                        <div class="memory-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                    <h3 class="memory-title">Pesan</h3>
+                        <p class="memory-desc"><strong> tika: </strong> terimakasi udah jadi temen baik di pkl pertama kali gua liat lu, lu orang nya kaya judes gitu tapi dikit 🤏🏻 segini hahahah😜
+<br> <strong>Siti:</strong> terimakasi ya sit udah jadi temen baik di pkl, maaf juga gua suka salah sebut nama lu terus🤗🤗 
+<br> <strong> buat kalian: </strong>  makasi ya udah jadi temen baik dan gua berharap kita masih bisa jaga hubungan baik walaupun kalian udah selesai pkl, gua ga bakal nyaka kita bisa akrab gini bisa se frekuensi juga, maklum gua kan anak nya introvet bangettt😁🤪🤪 kapan' kita harus bisa main bareng sii !!!</p>
+                        <p class="message-signature">- nayla -</p>
+                    </div>
+
+                     <div class="memory-card">
+                        <div class="memory-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                    <h3 class="memory-title">Pesan</h3>
+                        <p class="memory-desc"><strong> tika: </strong> Maaf ya kalau agak lebay, dan maaf juga… Makia emang gak jago ngerangkai kata-kata 😅
+Tapi yaudah lah yaa, ini dari hati kok 😌👇
+<br>
+Kadang yang cuma sebulan justru jadi yang paling keinget. 🫂
+PKL-nya sih selesai, tapi vibes bareng kalian bakal lama tinggal di kepala. 🧠💛
+Thanks ya, udah jadi bagian paling seru dan paling waras (walau kadang ngaco juga) dari cerita PKL ini 😆
+See you again, bukan cuma di story… tapi semoga di dunia nyata juga. ✌️✨
+
+<br> <strong>Siti:</strong> Maaf ya kalau agak lebay, dan maaf juga… Makia emang gak jago ngerangkai kata-kata 😅
+Tapi yaudah lah yaa, ini dari hati kok 😌👇
+<br>
+Siapa sangka kenal cuma sebulan bisa bikin aku senyaman ini bareng kalian. 🤍
+Kalian bukan cuma temen PKL—kalian udah jadi highlight 2025 ku. ✨
+Kita baru kenal, tapi udah bisa nyambung, ketawa bareng, capek bareng, dan somehow berasa udah kenal lama. 😄
+Kalau kenangan PKL itu film, kalian bagian paling serunya. 🎬
+Thank you yaa, udah bikin semuanya jauh dari kata ngebosenin. 🫶
+Waktunya singkat, tapi cukup buat ninggalin kesan yang susah dilupain. 
+
+                        <p class="message-signature">- makia -</p>
+
+                        <div class="memory-card">
+                        <div class="memory-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                    <h3 class="memory-title">Pesan</h3>
+                        <p class="memory-desc"><strong> tika: </strong> terimakasi udah jadi temen baik di pkl pertama kali gua liat lu, lu orang nya kaya judes gitu tapi dikit 🤏🏻 segini hahahah😜
+<br> <strong>Siti:</strong> terimakasi ya sit udah jadi temen baik di pkl, maaf juga gua suka salah sebut nama lu terus🤗🤗 
+<br> <strong> buat kalian: </strong>  makasi ya udah jadi temen baik dan gua berharap kita masih bisa jaga hubungan baik walaupun kalian udah selesai pkl, gua ga bakal nyaka kita bisa akrab gini bisa se frekuensi juga, maklum gua kan anak nya introvet bangettt😁🤪🤪 kapan' kita harus bisa main bareng sii !!!</p>
+                        <p class="message-signature">- nayla -</p>
+                    </div>
+
+                    <div class="memory-card">
+                        <div class="memory-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                    <h3 class="memory-title">Pesan</h3>
+                        <p class="memory-desc">makasii yakk cinakk udahh mau jadii temenn pkll yang bedaa sekolaaa, tapi sangat di sayangkan cuma bisa jadi kodomo (teman baik ku) apakah aku bisa jadi indomie (seleraku) ???</p>
+                        <p class="message-signature">- Rizky -</p>
+                    </div>
+
+                    <div class="memory-card">
+                        <div class="memory-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                    <h3 class="memory-title">Pesan</h3>
+                        <p class="memory-desc">Makasih ya buat kalian berdua tika sama siti udah ngajarin gw  pekerjaan nya dari awal sehat sehat ye dan maaf kalo web nya kurang bagus 🙏🙏🙏</p>
+                        <p class="message-signature">- Rian -</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Thank You Section -->
+            <section class="thank-you-section">
+                <h2 class="thank-you-title">Terima Kasih <span>Tika dan Siti</span></h2>
+                <p class="thank-you-text">PKL ini tidak akan begitu berkesan tanpa kehadiran kalian. Setiap tawa, dan setiap momen bersama telah menjadi kenangan indah yang akan selalu kami simpan.</p>
+                <p class="thank-you-text">Meski waktu bersama tidak lama, pertemanan kita tidak akan berakhir di sini. Sampai jumpa di lain kesempatan!</p>
+                <div class="signature">Teman-teman PKL</div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <h3 class="footer-title">Tetap Sehat Selalu</h3>
+            <p class="footer-text">Jangan biarkan jarak memutus silaturahmi kita</p>
+            
+            <div class="copyright">
+                <p>© 2025 Kenangan PKL | Dibuat oleh Rian</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Animasi saat scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.memory-card, .photo-item');
+                const windowHeight = window.innerHeight;
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    
+                    if (elementPosition < windowHeight - 100) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Set initial state
+            document.querySelectorAll('.memory-card, .photo-item').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Trigger once on load
+            
+            // Floating heart animation
+            const heart = document.querySelector('.fa-heart');
+            heart.style.animation = 'floating 3s ease-in-out infinite';
+            
+            // Music player functionality
+            const audio = document.getElementById('bgMusic');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const playIcon = playPauseBtn.querySelector('i');
+            const autoplayNotice = document.getElementById('autoplayNotice');
+            let isPlaying = false;
+            
+            // Function to handle autoplay
+            function tryAutoplay() {
+                // Set volume to a reasonable level
+                audio.volume = 0.3;
+                
+                // Promise-based play with error handling
+                const playPromise = audio.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Autoplay worked
+                        isPlaying = true;
+                        playIcon.classList.remove('fa-play');
+                        playIcon.classList.add('fa-pause');
+                        autoplayNotice.style.display = 'block';
+                        
+                        // Hide notice after 5 seconds
+                        setTimeout(() => {
+                            autoplayNotice.style.display = 'none';
+                        }, 5000);
+                    })
+                    .catch(error => {
+                        // Autoplay was prevented
+                        console.log('Autoplay prevented:', error);
+                        isPlaying = false;
+                        playIcon.classList.remove('fa-pause');
+                        playIcon.classList.add('fa-play');
+                        
+                        // Show notice to user to click play
+                        autoplayNotice.textContent = 'Klik tombol play untuk memutar musik';
+                        autoplayNotice.style.display = 'block';
+                    });
+                }
+            }
+            
+            // Try to autoplay when page loads
+            tryAutoplay();
+            
+            // Also try to autoplay when user interacts with page (helps in some browsers)
+            document.addEventListener('click', function firstInteraction() {
+                tryAutoplay();
+                document.removeEventListener('click', firstInteraction);
+            });
+            
+            // Play/pause button click handler
+            playPauseBtn.addEventListener('click', function() {
+                if (isPlaying) {
+                    audio.pause();
+                    playIcon.classList.remove('fa-pause');
+                    playIcon.classList.add('fa-play');
+                } else {
+                    audio.play().then(() => {
+                        playIcon.classList.remove('fa-play');
+                        playIcon.classList.add('fa-pause');
+                    });
+                }
+                isPlaying = !isPlaying;
+            });
+            
+            // Change icon when audio is playing/paused
+            audio.addEventListener('play', function() {
+                playIcon.classList.remove('fa-play');
+                playIcon.classList.add('fa-pause');
+                isPlaying = true;
+            });
+            
+            audio.addEventListener('pause', function() {
+                playIcon.classList.remove('fa-pause');
+                playIcon.classList.add('fa-play');
+                isPlaying = false;
+            });
+            
+            // Show music info on hover
+            const musicPlayer = document.querySelector('.music-player');
+            const musicInfo = document.querySelector('.music-info');
+            
+            musicPlayer.addEventListener('mouseenter', function() {
+                musicInfo.style.maxWidth = '200px';
+                musicInfo.style.marginLeft = '5px';
+            });
+            
+            musicPlayer.addEventListener('mouseleave', function() {
+                musicInfo.style.maxWidth = '0';
+                musicInfo.style.marginLeft = '0';
+            });
+        });
+    </script>
+</body>
+</html>
